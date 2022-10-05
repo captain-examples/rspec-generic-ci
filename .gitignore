@@ -1,0 +1,6 @@
+# used by direnv / envrc
+.direnv
+
+# where we put rspec test outputa
+tmp
+.gem
