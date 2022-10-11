@@ -1,2 +1,3 @@
 # rspec
-An RSpec Captain Integration
+
+An RSpec Captain Integration Example
