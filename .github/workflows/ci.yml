@@ -11,5 +11,25 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ruby/setup-ruby@v1
         with:
-          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-      - run: bundle exec rspec
+          bundler-cache: true
+      # --format json --out tmp/rspec.json is for captain
+      # --format documentation makes the github shell output usable
+      - run: |
+          bundle exec rspec \
+            --format json --out tmp/rspec.json \
+            --format documentation
+      - name: Upload test results to Captain
+        uses: rwx-research/upload-captain-artifact@v1
+        if: always()
+        continue-on-error: true
+        with:
+          artifacts: |
+            [
+              {
+                "name": "RSpec",
+                "path": "tmp/rspec.json",
+                "kind": "test_results",
+                "parser": "rspec_json"
+              }
+            ]
+          captain-token: '${{ secrets.CAPTAIN_API_TOKEN }}'
