@@ -3,3 +3,4 @@
 
 # where we put rspec test outputa
 tmp
+.gem
