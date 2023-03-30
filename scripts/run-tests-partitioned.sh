@@ -17,4 +17,4 @@ test_files=$(
     "spec/**/*_spec.rb"
 )
 
-captain run $suite_id -c "bundle exec rspec --format json --out tmp/rspec.json --format progress $test_files"
+captain run $suite_id -- $test_files
