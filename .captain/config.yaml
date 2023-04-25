@@ -6,3 +6,7 @@ test-suites:
     output:
       reporters:
         junit-xml: tmp/junit.xml
+    partition:
+      command: bundle exec rspec --format json --out tmp/rspec.json --format progress {{ testFiles }}
+      globs:
+      - spec/**/*_spec.rb
