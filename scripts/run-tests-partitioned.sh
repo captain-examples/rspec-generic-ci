@@ -8,13 +8,4 @@ script_path="$(dirname -- "${0}")"
 # shellcheck source=set-captain-env-from-git.sh
 source "${script_path}/set-captain-env-from-git.sh"
 
-export CAPTAIN_SUITE_ID=captain-examples-rspec
-
-test_files=$(
-  captain partition \
-    --index "$CAPTAIN_PARTITION_INDEX" \
-    --total "$CAPTAIN_PARTITION_TOTAL" \
-    "spec/**/*_spec.rb"
-)
-
-captain run -- "$test_files"
+captain run captain-examples-rspec --partition-index "$CAPTAIN_PARTITION_INDEX" --partition-total "$CAPTAIN_PARTITION_TOTAL"
